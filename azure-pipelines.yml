@@ -19,12 +19,12 @@ steps:
 - task: GitHubRelease@1
   inputs:
     gitHubConnection: 'github'
-    repositoryName: 'agrim4s/pipelines-android'
+    repositoryName: 'agrim4s/pipelines-xcode'
     action: 'create'
     target: '$(Build.SourceVersion)'
-    tagSource: userSpecifiedTag  
-    tag: '$(Build.BuildNumber)'  
-    title: '$(Build.BuildNumber)'  
-    assets: '**/*.*p*'  
-    changeLogCompareToRelease: lastNonDraftRelease  
-    changeLogType: 'commitBased'
+    tagSource: 'userSpecifiedTag'
+    tag: '$(Build.BuildNumber)'
+    title: '$(Build.BuildNumber)'
+    assets: '**/*.*p*'
+    changeLogCompareToRelease: 'lastNonDraftRelease'
+    changeLogType: 'commitBased''
