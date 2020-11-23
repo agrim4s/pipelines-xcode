@@ -10,10 +10,8 @@ variables:
   scheme: ''
   sdk: 'iphoneos'
   configuration: 'Release'
-  system.debug: true
 
 steps:
-
 - task: Xcode@5
   inputs:
     sdk: '$(sdk)'
