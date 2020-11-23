@@ -22,9 +22,9 @@ steps:
     repositoryName: 'agrim4s/pipelines-xcode'
     action: 'create'
     target: '$(Build.SourceVersion)'
-    tagSource: 'userSpecifiedTag'
+    tagSource: userSpecifiedTag
     tag: '$(Build.BuildNumber)'
     title: '$(Build.BuildNumber)'
     assets: '**/*.*p*'
-    changeLogCompareToRelease: 'lastNonDraftRelease'
-    changeLogType: 'commitBased''
+    changeLogCompareToRelease: lastNonDraftRelease
+    changeLogType: 'commitBased'
