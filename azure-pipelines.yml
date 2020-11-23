@@ -14,4 +14,17 @@ steps:
     configuration: '$(configuration)'
     xcodeVersion: 'default' # Options: default, 10, 9, 8, specifyPath
     exportPath: '$(agent.buildDirectory)/output/$(sdk)/$(configuration)'
-    packageApp: false
+    packageApp: true
+
+- task: GitHubRelease@1
+  inputs:
+    gitHubConnection: 'github'
+    repositoryName: 'agrim4s/pipelines-android'
+    action: 'create'
+    target: '$(Build.SourceVersion)'
+    tagSource: userSpecifiedTag  
+    tag: '$(Build.BuildNumber)'  
+    title: '$(Build.BuildNumber)'  
+    assets: '**/*.*p*'  
+    changeLogCompareToRelease: lastNonDraftRelease  
+    changeLogType: 'commitBased'
