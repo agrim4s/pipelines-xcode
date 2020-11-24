@@ -38,9 +38,13 @@ steps:
     actions: 'build'
     xcodeVersion: '10'
     packageApp: true
-    exportPath: 
+    exportOptions: 'specify'
+    exportMethod: 'app-store'
+    exportTeamId: 'agrim'
+    # exportPath: 
     destinationPlatformOption: 'iOS'
     publishJUnitResults: true
+
 # - task: Xcode@5
 #   inputs:
 #     actions: 'build'
