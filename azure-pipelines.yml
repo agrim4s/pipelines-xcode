@@ -9,12 +9,24 @@ variables:
 steps:
 - task: Xcode@5
   inputs:
-    sdk: '$(sdk)'
+    actions: 'build'
     scheme: '$(scheme)'
+    sdk: '$(sdk)'
     configuration: '$(configuration)'
-    xcodeVersion: 'default' # Options: default, 10, 9, 8, specifyPath
-    exportPath: '$(agent.buildDirectory)/output/$(sdk)/$(configuration)'
+    xcWorkspacePath: '**/*.xcodeproj/project.xcworkspace'
+    xcodeVersion: 'default'
+    signingOption: 'manual'
+    signingIdentity: '$(APPLE_CERTIFICATE_SIGNING_IDENTITY)'
+    provisioningProfileUuid: '$(APPLE_PROV_PROFILE_UUID)'
     packageApp: true
+# - task: Xcode@5
+#   inputs:
+#     sdk: '$(sdk)'
+#     scheme: '$(scheme)'
+#     configuration: '$(configuration)'
+#     xcodeVersion: 'default' # Options: default, 10, 9, 8, specifyPath
+#     exportPath: '$(agent.buildDirectory)/output/$(sdk)/$(configuration)'
+#     packageApp: true
 
 - task: GitHubRelease@1
   inputs:
