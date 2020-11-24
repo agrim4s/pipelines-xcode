@@ -7,6 +7,12 @@ variables:
   configuration: 'Release'
 
 steps:
+- task: InstallAppleCertificate@2
+  inputs:
+    certSecureFile: 'appCertificate.p12'
+    certPwd: $(appCertificatePassword)
+    keychain: 'temp'
+    deleteCert: true
 - task: Xcode@5
   inputs:
     actions: 'build'
