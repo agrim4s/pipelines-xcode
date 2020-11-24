@@ -42,6 +42,7 @@ steps:
     exportMethod: 'app-store'
     exportTeamId: 'agrim'
     # exportPath: 
+    signingOption: 'nosign'
     destinationPlatformOption: 'iOS'
     publishJUnitResults: true
 
