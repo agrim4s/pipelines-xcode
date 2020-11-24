@@ -55,7 +55,7 @@ steps:
     xcWorkspacePath: '**/*.xcodeproj/project.xcworkspace'
     xcodeVersion: 'default' # Options: 8, 9, 10, default, specifyPath
     packageApp: true
-    signingOption: 'nosign' # Options: nosign, default, manual, auto
+    signingOption: 'auto' # Options: nosign, default, manual, auto
     exportOptions: 'specify'
     exportMethod: 'app-store'
     exportTeamId: 'agrim'
