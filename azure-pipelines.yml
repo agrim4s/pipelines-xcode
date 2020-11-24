@@ -7,33 +7,38 @@ variables:
   configuration: 'Release'
 
 steps:
-- task: InstallAppleCertificate@2
-  inputs:
-    certSecureFile: 'appCertificate.p12'
-    certPwd: $(appCertificatePassword)
-    keychain: 'temp'
-    deleteCert: true
-- task: Xcode@5
-  inputs:
-    actions: 'build'
-    scheme: '$(scheme)'
-    sdk: '$(sdk)'
-    configuration: '$(configuration)'
-    xcWorkspacePath: '**/*.xcodeproj/project.xcworkspace'
-    xcodeVersion: 'default'
-    signingOption: 'manual'
-    signingIdentity: '$(APPLE_CERTIFICATE_SIGNING_IDENTITY)'
-    provisioningProfileUuid: '$(APPLE_PROV_PROFILE_UUID)'
-    packageApp: true
+# - task: InstallAppleCertificate@2
+#   inputs:
+#     certSecureFile: 'appCertificate.p12'
+#     certPwd: $(appCertificatePassword)
+#     keychain: 'temp'
+#     deleteCert: true
 # - task: Xcode@5
 #   inputs:
-#     sdk: '$(sdk)'
+#     actions: 'build'
 #     scheme: '$(scheme)'
+#     sdk: '$(sdk)'
 #     configuration: '$(configuration)'
-#     xcodeVersion: 'default' # Options: default, 10, 9, 8, specifyPath
-#     exportPath: '$(agent.buildDirectory)/output/$(sdk)/$(configuration)'
+#     xcWorkspacePath: '**/*.xcodeproj/project.xcworkspace'
+#     xcodeVersion: 'default'
+#     signingOption: 'manual'
+#     signingIdentity: '$(APPLE_CERTIFICATE_SIGNING_IDENTITY)'
+#     provisioningProfileUuid: '$(APPLE_PROV_PROFILE_UUID)'
 #     packageApp: true
-
+- task: Xcode@5
+  inputs:
+    sdk: '$(sdk)'
+    scheme: '$(scheme)'
+    configuration: '$(configuration)'
+    xcodeVersion: 'default' # Options: default, 10, 9, 8, specifyPath
+    # exportPath: '$(agent.buildDirectory)/output/$(sdk)/$(configuration)'
+    packageApp: false
+- task: CopyFiles@2
+  inputs:
+    contents: '**/*.ipa'
+    targetFolder: '$(build.artifactStagingDirectory)'
+    overWrite: true
+    flattenFolders: true
 - task: GitHubRelease@1
   inputs:
     gitHubConnection: 'github'
